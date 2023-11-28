@@ -27,10 +27,12 @@ public class Ingredient {
     return name;
 }
 public void setName(String Name){
-    this.name = Name;
+
+        this.name = Name;
 }
 public String getIngredient(){
-    return Ingredient;
+
+        return Ingredient;
 }
 public String setIngredient(String Ingredient){
     this.Ingredient = Ingredient;

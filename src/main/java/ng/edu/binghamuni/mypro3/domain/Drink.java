@@ -1,14 +1,23 @@
 package ng.edu.binghamuni.mypro3.domain;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.OneToMany;
+import jakarta.persistence.*;
+import org.hibernate.annotations.CreationTimestamp;
 
 
 import java.util.List;
 
 @Entity(name = "drink")
+
 public class Drink {
+    @OneToMany
+    private List<Ingredient> Ingredient;
+
+    private String name;
+    private int capacity;
+    int price;
+    private String color;
+    private String Type;
+    private String company;
     public List<Ingredient> getIngredient() {
         return Ingredient;
     }
@@ -29,33 +38,24 @@ public class Drink {
         this.price = price;
     }
 
-    public Drink(List<Ingredient> ingredient, String name, int capacity, String color, String type, String company, Long id) {
-        Ingredient = ingredient;
+    public Drink(Long id, List<Ingredient> ingredient, String name, int capacity, String color, String type, String company, int price) {
+        this.Ingredient = ingredient;
         this.name = name;
         this.capacity = capacity;
         this.color = color;
-        Type = type;
+        this.Type = type;
         this.company = company;
         this.id = id;
         this.price = price;
 
     }
-
-
     public Drink(){
 
     }
-    @OneToMany
-    private List<Ingredient> Ingredient;
 
-    private String name;
-    private int capacity;
-    int price;
-    private String color;
-    private String Type;
-    private String company;
 
     @Id
+    @GeneratedValue( strategy = GenerationType.AUTO)
     private Long id;
 
     // GETTER
@@ -108,9 +108,6 @@ public class Drink {
     public void setCompany(String company) {
         this.company = company;
     }
-
-
-
 
     }
 

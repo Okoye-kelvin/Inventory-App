@@ -1,17 +1,15 @@
 package ng.edu.binghamuni.mypro3.services;
 
 import ng.edu.binghamuni.mypro3.domain.Drink;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
-
+@Service
 public interface DrinkService {
 Drink saveDrink(Drink drink);
 Drink getDrinkById(Long Id);
 List<Drink> getAllDrinks();
-
-    List<Drink> getAllDrink();
-
-    Drink UpdateDrink(Drink drink);
+Drink updateDrink(Drink drink);
 void deleteDrink(Long Id);
 
 
