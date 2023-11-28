@@ -15,6 +15,7 @@ public class DrinkServiceImpl implements DrinkService {
 
     @Override
     public Drink saveDrink(Drink drink) {
+
         return drinkRepository.save(drink);
     }
 
@@ -31,13 +32,15 @@ public class DrinkServiceImpl implements DrinkService {
     }
 
     @Override
-    public List<Drink> getAllDrink() {
+    public List<Drink> getAllDrinks() {
+
         return drinkRepository.findAll();
     }
 
+
     @Override
-    public Drink UpdateDrink(Drink drink) {
-        Optional<Drink> optionalDrink = drinkRepository.findById(drink.getId());
+    public Drink updateDrink(Drink drink) {
+        Optional<Drink> optionalDrink = drinkRepository.findById(drink.getId()); //this is to check if the drink exist
         if (optionalDrink.isPresent()) {
             Drink updateDrink = new Drink();
             updateDrink.setCapacity(drink.getCapacity());
@@ -47,9 +50,11 @@ public class DrinkServiceImpl implements DrinkService {
             updateDrink.setName(drink.getName());
             updateDrink.setType(drink.getType());
             updateDrink.setIngredient(drink.getIngredient());
+
+            drinkRepository.save(updateDrink);
             return updateDrink;
         } else {
-            throw new RuntimeException("Drink not found");
+            throw new RuntimeException("Drink deos not exist");
         }
 
     }
