@@ -21,8 +21,11 @@ public class DrinkAPIController {
 @RequestMapping("/drink")
 @GetMapping("/drink")
 public ResponseEntity<List<Drink>> getAllDrink(){
-
     return ResponseEntity.ok().body(drinkService.getAllDrinks());
+}
+@GetMapping
+public ResponseEntity<Drink> getDrinkById(@PathVariable long id){
+    return ResponseEntity.ok().body(drinkService.getDrinkById(id));
 }
 @PostMapping("/drink")
 public ResponseEntity<Drink> saveDrink(@RequestBody Drink drink){

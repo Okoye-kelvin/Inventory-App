@@ -20,17 +20,17 @@ public class DrinkServiceImpl implements DrinkService {
     }
 
     @Override
-    public Drink getDrinkById(Long id) {
+    public Drink getDrinkById(long id) {
         Optional<Drink> drink = drinkRepository.findById(id);
+
         Drink emptyDrink = null;
-        if (drink.isPresent()) {
+        if (drink.isPresent()){
             emptyDrink = drink.get();
             return emptyDrink;
         } else {
-            throw new RuntimeException("Drink not found");
+            throw new RuntimeException("Drink Not Found");
         }
     }
-
     @Override
     public List<Drink> getAllDrinks() {
 
@@ -50,17 +50,16 @@ public class DrinkServiceImpl implements DrinkService {
             updateDrink.setName(drink.getName());
             updateDrink.setType(drink.getType());
             updateDrink.setIngredient(drink.getIngredient());
+            updateDrink.setPrice(drink.getPrice());
 
             drinkRepository.save(updateDrink);
             return updateDrink;
         } else {
-            throw new RuntimeException("Drink deos not exist");
+            throw new RuntimeException("Drink not found");
         }
-
     }
-
         @Override
-        public void deleteDrink (Long id){
+        public void deleteDrink (long id){
             drinkRepository.deleteById(id);
 
         }

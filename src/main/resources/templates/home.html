@@ -5,10 +5,17 @@
 
 <head th:replace="~{fragments/fragments :: head}"></head>
 
-
 <body>
-<div>
+<div style="text-align: center;">
+  <h1>Turbo Drink Industry
+  </h1>
+</div>
+<div class="m-2">
   <a th:href="@{/showNewDrinkForm}" class="btn btn-primary btn-sm mb-3">Add new drink</a>
+</div>
+<!--send a flash message-->
+<div th:if="${message}" th:class="'alert alert-' + ${color} + ' text-center'">
+  [[${message}]]
 </div>
 
 
@@ -18,6 +25,9 @@
         <th>Name</th>
         <th>Company</th>
         <th>Type</th>
+        <th>Capacity</th>
+        <th>Price</th>
+        <th>Color</th>
         <th>Action</th>
       </tr>
     </thead>
@@ -26,10 +36,13 @@
         <td th:text="${drink.name}"></td>
         <td th:text="${drink.company}"></td>
         <td th:text="${drink.type}"></td>
+        <td th:text="${drink.capacity}"></td>
+        <td th:text="${drink.price}"></td>
+        <td th:text="${drink.color}"></td>
         <td>
-          <a th:href="@{'/drink' + /${drink.id}}" class="btn btn-primary">Update</a>
-          <a class="btn btn-danger">Delete</a>
-</td>
+          <a class="h4 btn btn-primary mr-3" th:href="@{'/updateDrink/' + ${drink.id}}">Update</a>
+          <a th:onclick="return confirm('Are you sure you want to delete?')" class="h4 btn btn-danger" th:href="@{'/deleteDrink/' + ${drink.id}}">Delete</a>
+        </td>
 </tr>
 </tbody>
 </table>

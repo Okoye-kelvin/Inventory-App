@@ -12,9 +12,14 @@ public class Drink {
     @OneToMany
     private List<Ingredient> Ingredient;
 
+    @Id
+    @GeneratedValue( strategy = GenerationType.AUTO)
+    private Long id;
     private String name;
+    @Column(name = "capacity", nullable = true)
     private int capacity;
-    int price;
+    @Column(name = "price", nullable = true)
+    private int price;
     private String color;
     private String Type;
     private String company;
@@ -34,9 +39,6 @@ public class Drink {
         this.id = id;
     }
 
-    public Drink(int price) {
-        this.price = price;
-    }
 
     public Drink(Long id, List<Ingredient> ingredient, String name, int capacity, String color, String type, String company, int price) {
         this.Ingredient = ingredient;
@@ -54,10 +56,6 @@ public class Drink {
     }
 
 
-    @Id
-    @GeneratedValue( strategy = GenerationType.AUTO)
-    private Long id;
-
     // GETTER
     public String getName() {
         return name;
@@ -67,11 +65,6 @@ public class Drink {
 
         return capacity;
     }
-
-    public int getPrice() {
-        return price;
-    }
-
 
 
     public String getColor() {
@@ -94,9 +87,7 @@ public class Drink {
     public void setCapacity(int capacity) {
         this.capacity = capacity;
     }
-    public void setPrice(int price) {
-        this.price = price;
-    }
+
     public void setColor(String color) {
         this.color = color;
     }
@@ -107,6 +98,14 @@ public class Drink {
 
     public void setCompany(String company) {
         this.company = company;
+    }
+
+    public int getPrice() {
+        return price;
+    }
+
+    public void setPrice(int price) {
+        this.price = price;
     }
 
     }
